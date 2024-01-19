@@ -1,0 +1,24 @@
+<?php
+
+use Laminas\View\Helper\EscapeHtml;
+use Magento\Framework\View\Element\Template;
+use PushpakMods\Popup\ViewModel\PopupViewModel;
+
+
+/** @var Template $block*/
+/** @var PopupViewModel $viewModel*/
+
+$viewModel = $block->getData('view_model');
+
+$popup = $viewModel->getPopup();
+
+?>
+
+<div data-bind="mageInit: {
+        'PushpakMods_Popup/js/popup':{
+            'timeout': <?= /* @noEscape */  $popup->getTimeout();  ?>,
+            'title': '<?= $popup->getName();  ?>',
+            'content': '<?= htmlspecialchars($popup->getContent());  ?>'
+        }}">
+</div>
+
